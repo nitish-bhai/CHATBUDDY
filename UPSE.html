@@ -21,6 +21,8 @@
             --wa-button-color: #008069;
             --wa-link-color: #00a8e8;
             --wa-shadow: rgba(17, 27, 33, 0.15);
+            --wa-success: #4CAF50;
+            --wa-error: #e91e63;
         }
 
         * {
@@ -101,6 +103,81 @@
             display: flex;
         }
 
+        /* Notification Bell */
+        .notification-bell {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: var(--wa-error);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            max-width: 300px;
+        }
+
+        .toast {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            animation: slideIn 0.3s ease-out;
+            border-left: 4px solid var(--wa-success);
+        }
+
+        .toast.error {
+            border-left-color: var(--wa-error);
+        }
+
+        .toast-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .toast-message {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--wa-text-secondary);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
         /* Auth View Styles */
         #auth-view {
             background-color: var(--wa-app-bg);
@@ -179,7 +256,7 @@
         }
 
         .error-message {
-            color: #e91e63;
+            color: var(--wa-error);
             font-size: 14px;
             margin-top: 5px;
             display: none;
@@ -205,6 +282,11 @@
         .app-title {
             font-size: 18px;
             font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 5px;
         }
 
         .header-nav {
@@ -239,7 +321,7 @@
         }
 
         .badge {
-            background-color: #e91e63;
+            background-color: var(--wa-error);
             color: white;
             border-radius: 10px;
             padding: 2px 6px;
@@ -292,6 +374,10 @@
             font-weight: 500;
             font-size: 18px;
             margin-right: 15px;
+        }
+
+        .group-avatar {
+            background-color: var(--wa-success);
         }
 
         .item-details {
@@ -350,6 +436,10 @@
             margin-right: 10px;
         }
 
+        .group-avatar-small {
+            background-color: var(--wa-success);
+        }
+
         .contact-name {
             font-weight: 500;
         }
@@ -391,6 +481,13 @@
             color: var(--wa-text-secondary);
             text-align: right;
             margin-top: 2px;
+        }
+
+        .message-sender {
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 2px;
+            color: var(--wa-accent-blue);
         }
 
         #chat-input-container {
@@ -514,11 +611,11 @@
         }
 
         .end-call {
-            background-color: #e91e63;
+            background-color: var(--wa-error);
         }
 
         .accept-call {
-            background-color: #4CAF50;
+            background-color: var(--wa-success);
         }
 
         /* Modal Styles */
@@ -598,6 +695,11 @@
             color: var(--wa-text-primary);
         }
 
+        .btn-success {
+            background-color: var(--wa-success);
+            color: white;
+        }
+
         .blocked-user {
             display: flex;
             justify-content: space-between;
@@ -609,9 +711,68 @@
         .blocked-user:last-child {
             border-bottom: none;
         }
+
+        /* Group Styles */
+        .group-members {
+            margin-top: 15px;
+        }
+
+        .member-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--wa-border-color);
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .member-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--wa-border-color);
+        }
+
+        .member-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-member {
+            color: var(--wa-error);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-results {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid var(--wa-border-color);
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .search-result-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--wa-border-color);
+        }
+
+        .search-result-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
     <div id="app-container">
         <!-- Auth View -->
         <div id="auth-view" class="view active">
@@ -650,10 +811,21 @@
             <header class="main-header">
                 <div class="header-top">
                     <div class="app-title">CHAT BUDDY</div>
-                    <div>
+                    <div class="header-actions">
+                        <button id="notification-btn" class="icon-btn notification-bell">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                            </svg>
+                            <div class="notification-badge" id="notification-count" style="display: none;">0</div>
+                        </button>
                         <button id="add-friend-btn" class="icon-btn">
                             <svg viewBox="0 0 24 24">
                                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            </svg>
+                        </button>
+                        <button id="create-group-btn" class="icon-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                             </svg>
                         </button>
                         <button id="menu-btn" class="icon-btn">
@@ -797,6 +969,51 @@
             </div>
         </div>
 
+        <div id="create-group-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Create Group</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" id="group-name" class="form-input" placeholder="Group name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="search-members" class="form-input" placeholder="Search users to add...">
+                        <div class="search-results" id="search-results"></div>
+                    </div>
+                    <div class="group-members">
+                        <h4>Group Members</h4>
+                        <div class="member-list" id="group-members-list">
+                            <!-- Selected members will appear here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancel-create-group">Cancel</button>
+                    <button class="btn btn-primary" id="create-group">Create Group</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="group-info-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="group-info-title">Group Info</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="group-info-content">
+                        <!-- Group info will be populated here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="close-group-info">Close</button>
+                </div>
+            </div>
+        </div>
+
         <div id="profile-view-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -857,7 +1074,7 @@
 
     <script>
         // Firebase configuration
-        const firebaseConfig = {
+     const firebaseConfig = {
   apiKey: "AIzaSyBZ0Rze7dQrVxl7VEWiua1FJ1hbvLwJJNA",
   authDomain: "chat-buddy-7cf9b.firebaseapp.com",
   databaseURL: "https://chat-buddy-7cf9b-default-rtdb.firebaseio.com",
@@ -866,8 +1083,6 @@
   messagingSenderId: "246674542599",
   appId: "1:246674542599:web:88e43e87a177d408f7daa2"
 };
-
-
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
@@ -876,11 +1091,13 @@
         // Global state variables
         let currentUser = null;
         let currentChatPartner = null;
+        let currentChatType = null; // 'user' or 'group'
         let peerConnection = null;
         let localStream = null;
         let remoteStream = null;
         let currentCallId = null;
         let currentCallType = null;
+        let selectedGroupMembers = [];
 
         // UI Utility Functions
         function showView(viewId) {
@@ -917,6 +1134,43 @@
             }
         }
 
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type === 'error' ? 'error' : ''}`;
+            toast.innerHTML = `
+                <div class="toast-icon">${type === 'error' ? '⚠️' : '🔔'}</div>
+                <div class="toast-message">${message}</div>
+                <button class="toast-close">&times;</button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 5000);
+            
+            // Close button functionality
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.remove();
+            });
+        }
+
+        // Update notification badge
+        function updateNotificationBadge(count) {
+            const badge = document.getElementById('notification-count');
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
         // Authentication Functions
         function handleAuthStateChange(user) {
             if (user) {
@@ -940,8 +1194,9 @@
         }
 
         function initializeApp() {
-            // Load user contacts
+            // Load user contacts and groups
             loadContacts();
+            loadGroups();
             
             // Listen for friend requests
             listenForFriendRequests();
@@ -951,6 +1206,9 @@
             
             // Load call history
             loadCallHistory();
+            
+            // Listen for group invites
+            listenForGroupInvites();
         }
 
         function loadContacts() {
@@ -958,7 +1216,10 @@
             contactsRef.on('value', snapshot => {
                 const contacts = snapshot.val() || {};
                 const homeContent = document.getElementById('home-content');
-                homeContent.innerHTML = '';
+                
+                // Clear existing contacts (but keep groups)
+                const existingContacts = homeContent.querySelectorAll('.contact-item');
+                existingContacts.forEach(contact => contact.remove());
                 
                 Object.keys(contacts).forEach(contactId => {
                     database.ref('users/' + contactId).once('value').then(userSnapshot => {
@@ -972,9 +1233,31 @@
             });
         }
 
+        function loadGroups() {
+            const groupsRef = database.ref('users/' + currentUser.uid + '/groups');
+            groupsRef.on('value', snapshot => {
+                const groups = snapshot.val() || {};
+                const homeContent = document.getElementById('home-content');
+                
+                // Clear existing groups
+                const existingGroups = homeContent.querySelectorAll('.group-item');
+                existingGroups.forEach(group => group.remove());
+                
+                Object.keys(groups).forEach(groupId => {
+                    database.ref('groups/' + groupId).once('value').then(groupSnapshot => {
+                        const group = groupSnapshot.val();
+                        if (group) {
+                            const groupElement = createGroupElement(group, groupId);
+                            homeContent.appendChild(groupElement);
+                        }
+                    });
+                });
+            });
+        }
+
         function createContactElement(user, userId) {
             const div = document.createElement('div');
-            div.className = 'list-item';
+            div.className = 'list-item contact-item';
             div.innerHTML = `
                 <div class="item-avatar">${user.username ? user.username.charAt(0).toUpperCase() : 'U'}</div>
                 <div class="item-details">
@@ -982,20 +1265,50 @@
                     <div class="item-subtext">Last seen recently</div>
                 </div>
             `;
-            div.addEventListener('click', () => openChat(user, userId));
+            div.addEventListener('click', () => openChat(user, userId, 'user'));
             return div;
         }
 
-        function openChat(user, userId) {
-            currentChatPartner = { ...user, uid: userId };
-            document.getElementById('chat-contact-name').textContent = user.username || 'Unknown User';
-            document.getElementById('chat-contact-avatar').textContent = user.username ? user.username.charAt(0).toUpperCase() : 'U';
-            showView('chat-view');
-            loadChatMessages(userId);
+        function createGroupElement(group, groupId) {
+            const div = document.createElement('div');
+            div.className = 'list-item group-item';
+            div.innerHTML = `
+                <div class="item-avatar group-avatar">G</div>
+                <div class="item-details">
+                    <div class="item-name">${group.name || 'Unnamed Group'}</div>
+                    <div class="item-subtext">${Object.keys(group.members || {}).length} members</div>
+                </div>
+            `;
+            div.addEventListener('click', () => openChat(group, groupId, 'group'));
+            return div;
         }
 
-        function loadChatMessages(partnerId) {
-            const chatId = generateChatId(currentUser.uid, partnerId);
+        function openChat(partner, id, type) {
+            currentChatPartner = { ...partner, uid: id };
+            currentChatType = type;
+            
+            if (type === 'user') {
+                document.getElementById('chat-contact-name').textContent = partner.username || 'Unknown User';
+                document.getElementById('chat-contact-avatar').textContent = partner.username ? partner.username.charAt(0).toUpperCase() : 'U';
+                document.getElementById('chat-contact-avatar').className = 'contact-avatar';
+            } else {
+                document.getElementById('chat-contact-name').textContent = partner.name || 'Unnamed Group';
+                document.getElementById('chat-contact-avatar').textContent = 'G';
+                document.getElementById('chat-contact-avatar').className = 'contact-avatar group-avatar-small';
+            }
+            
+            showView('chat-view');
+            loadChatMessages(id, type);
+        }
+
+        function loadChatMessages(partnerId, type) {
+            let chatId;
+            if (type === 'user') {
+                chatId = generateChatId(currentUser.uid, partnerId);
+            } else {
+                chatId = `group_${partnerId}`;
+            }
+            
             const messagesRef = database.ref('messages/' + chatId);
             const chatMessages = document.getElementById('chat-messages');
             
@@ -1005,7 +1318,7 @@
                 
                 Object.keys(messages).forEach(messageId => {
                     const message = messages[messageId];
-                    const messageElement = createMessageElement(message);
+                    const messageElement = createMessageElement(message, type);
                     chatMessages.appendChild(messageElement);
                 });
                 
@@ -1018,11 +1331,19 @@
             return [uid1, uid2].sort().join('_');
         }
 
-        function createMessageElement(message) {
+        function createMessageElement(message, type) {
             const div = document.createElement('div');
             const isSent = message.senderId === currentUser.uid;
             div.className = `message-bubble ${isSent ? 'message-sent' : 'message-received'}`;
+            
+            let senderName = '';
+            if (type === 'group' && !isSent) {
+                // For group messages, show sender name
+                senderName = `<div class="message-sender">${message.senderName || 'Unknown User'}</div>`;
+            }
+            
             div.innerHTML = `
+                ${senderName}
                 <div>${message.text}</div>
                 <div class="message-time">${formatTime(message.timestamp)}</div>
             `;
@@ -1040,18 +1361,30 @@
             const messageText = chatInput.value.trim();
             
             if (messageText && currentChatPartner) {
-                const chatId = generateChatId(currentUser.uid, currentChatPartner.uid);
+                let chatId;
+                if (currentChatType === 'user') {
+                    chatId = generateChatId(currentUser.uid, currentChatPartner.uid);
+                } else {
+                    chatId = `group_${currentChatPartner.uid}`;
+                }
+                
                 const message = {
                     text: messageText,
                     senderId: currentUser.uid,
+                    senderName: currentUser.displayName || 'Unknown User',
                     timestamp: Date.now()
                 };
                 
                 database.ref('messages/' + chatId).push(message);
                 chatInput.value = '';
                 
-                // Update unread count for recipient
-                updateUnreadCount(currentChatPartner.uid, chatId);
+                // Update unread count for recipient (for user chats only)
+                if (currentChatType === 'user') {
+                    updateUnreadCount(currentChatPartner.uid, chatId);
+                } else if (currentChatType === 'group') {
+                    // For groups, update unread count for all members except sender
+                    updateGroupUnreadCount(currentChatPartner.uid, chatId);
+                }
             }
         }
 
@@ -1062,6 +1395,21 @@
             });
         }
 
+        function updateGroupUnreadCount(groupId, chatId) {
+            const groupRef = database.ref('groups/' + groupId + '/members');
+            groupRef.once('value').then(snapshot => {
+                const members = snapshot.val() || {};
+                Object.keys(members).forEach(memberId => {
+                    if (memberId !== currentUser.uid) {
+                        const unreadRef = database.ref('unreadCounts/' + memberId + '/' + chatId);
+                        unreadRef.transaction(current => {
+                            return (current || 0) + 1;
+                        });
+                    }
+                });
+            });
+        }
+
         // Friend Request Functions
         function listenForFriendRequests() {
             const requestsRef = database.ref('requests/' + currentUser.uid);
@@ -1069,6 +1417,20 @@
                 const request = snapshot.val();
                 const requestId = snapshot.key;
                 displayFriendRequest(request, requestId);
+                showToast(`${request.senderUsername} sent you a friend request`, 'success');
+                updateNotificationCount();
+            });
+            
+            requestsRef.on('child_removed', snapshot => {
+                updateNotificationCount();
+            });
+        }
+
+        function updateNotificationCount() {
+            const requestsRef = database.ref('requests/' + currentUser.uid);
+            requestsRef.once('value').then(snapshot => {
+                const count = snapshot.numChildren();
+                updateNotificationBadge(count);
             });
         }
 
@@ -1083,7 +1445,7 @@
                     <div class="item-subtext">Sent you a friend request</div>
                 </div>
                 <div class="item-actions">
-                    <button class="btn btn-primary accept-request">Accept</button>
+                    <button class="btn btn-success accept-request">Accept</button>
                     <button class="btn btn-secondary reject-request">Reject</button>
                 </div>
             `;
@@ -1115,6 +1477,8 @@
                     element.remove();
                 }
             });
+            
+            showToast(`You are now friends with ${request.senderUsername}`, 'success');
         }
 
         function rejectFriendRequest(requestId) {
@@ -1131,6 +1495,8 @@
                     }
                 }
             });
+            
+            showToast('Friend request rejected', 'success');
         }
 
         function sendFriendRequest() {
@@ -1149,7 +1515,7 @@
                             database.ref('users/' + currentUser.uid + '/contacts/' + recipientId).once('value')
                                 .then(contactSnapshot => {
                                     if (contactSnapshot.exists()) {
-                                        alert('You are already friends with this user.');
+                                        showToast('You are already friends with this user.', 'error');
                                     } else {
                                         // Send friend request
                                         const request = {
@@ -1159,20 +1525,173 @@
                                         };
                                         
                                         database.ref('requests/' + recipientId).push(request);
-                                        alert('Friend request sent!');
+                                        showToast('Friend request sent!', 'success');
                                         hideModal('add-friend-modal');
                                         document.getElementById('friend-username').value = '';
                                     }
                                 });
                         } else {
-                            alert('User not found. Please check the username.');
+                            showToast('User not found. Please check the username.', 'error');
                         }
                     })
                     .catch(error => {
                         console.error('Error finding user:', error);
-                        alert('Error finding user. Please try again.');
+                        showToast('Error finding user. Please try again.', 'error');
                     });
             }
+        }
+
+        // Group Functions
+        function searchUsers(query) {
+            if (query.length < 2) {
+                document.getElementById('search-results').innerHTML = '';
+                return;
+            }
+            
+            database.ref('users').orderByChild('username').startAt(query).endAt(query + '\uf8ff').once('value')
+                .then(snapshot => {
+                    const users = snapshot.val() || {};
+                    const searchResults = document.getElementById('search-results');
+                    searchResults.innerHTML = '';
+                    
+                    Object.keys(users).forEach(userId => {
+                        const user = users[userId];
+                        // Don't show current user in search results
+                        if (userId !== currentUser.uid && !selectedGroupMembers.includes(userId)) {
+                            const resultItem = document.createElement('div');
+                            resultItem.className = 'search-result-item';
+                            resultItem.textContent = user.username;
+                            resultItem.addEventListener('click', () => {
+                                addMemberToGroup(userId, user.username);
+                                document.getElementById('search-members').value = '';
+                                searchResults.innerHTML = '';
+                            });
+                            searchResults.appendChild(resultItem);
+                        }
+                    });
+                });
+        }
+
+        function addMemberToGroup(userId, username) {
+            if (!selectedGroupMembers.includes(userId)) {
+                selectedGroupMembers.push(userId);
+                updateGroupMembersList();
+            }
+        }
+
+        function removeMemberFromGroup(userId) {
+            selectedGroupMembers = selectedGroupMembers.filter(id => id !== userId);
+            updateGroupMembersList();
+        }
+
+        function updateGroupMembersList() {
+            const membersList = document.getElementById('group-members-list');
+            membersList.innerHTML = '';
+            
+            // Add current user as admin
+            const currentUserItem = document.createElement('div');
+            currentUserItem.className = 'member-item';
+            currentUserItem.innerHTML = `
+                <span>${currentUser.displayName} (You) - Admin</span>
+            `;
+            membersList.appendChild(currentUserItem);
+            
+            // Add other members
+            selectedGroupMembers.forEach(userId => {
+                database.ref('users/' + userId).once('value').then(snapshot => {
+                    const user = snapshot.val();
+                    if (user) {
+                        const memberItem = document.createElement('div');
+                        memberItem.className = 'member-item';
+                        memberItem.innerHTML = `
+                            <span>${user.username}</span>
+                            <button class="remove-member" data-userid="${userId}">Remove</button>
+                        `;
+                        membersList.appendChild(memberItem);
+                        
+                        memberItem.querySelector('.remove-member').addEventListener('click', function() {
+                            removeMemberFromGroup(userId);
+                        });
+                    }
+                });
+            });
+        }
+
+        function createGroup() {
+            const groupName = document.getElementById('group-name').value.trim();
+            
+            if (groupName && selectedGroupMembers.length > 0) {
+                // Create group
+                const groupId = database.ref('groups').push().key;
+                const group = {
+                    name: groupName,
+                    createdBy: currentUser.uid,
+                    createdAt: Date.now(),
+                    members: {
+                        [currentUser.uid]: true
+                    }
+                };
+                
+                // Add all selected members
+                selectedGroupMembers.forEach(memberId => {
+                    group.members[memberId] = true;
+                });
+                
+                // Save group to database
+                database.ref('groups/' + groupId).set(group)
+                    .then(() => {
+                        // Add group to each member's group list
+                        Object.keys(group.members).forEach(memberId => {
+                            database.ref('users/' + memberId + '/groups/' + groupId).set(true);
+                        });
+                        
+                        showToast('Group created successfully!', 'success');
+                        hideModal('create-group-modal');
+                        document.getElementById('group-name').value = '';
+                        selectedGroupMembers = [];
+                        document.getElementById('group-members-list').innerHTML = '';
+                    })
+                    .catch(error => {
+                        console.error('Error creating group:', error);
+                        showToast('Error creating group. Please try again.', 'error');
+                    });
+            } else {
+                showToast('Please enter a group name and add at least one member.', 'error');
+            }
+        }
+
+        function listenForGroupInvites() {
+            const groupsRef = database.ref('users/' + currentUser.uid + '/groups');
+            groupsRef.on('child_added', snapshot => {
+                const groupId = snapshot.key;
+                database.ref('groups/' + groupId).once('value').then(groupSnapshot => {
+                    const group = groupSnapshot.val();
+                    if (group) {
+                        showToast(`You were added to group: ${group.name}`, 'success');
+                    }
+                });
+            });
+        }
+
+        function showGroupInfo(groupId) {
+            database.ref('groups/' + groupId).once('value').then(snapshot => {
+                const group = snapshot.val();
+                if (group) {
+                    document.getElementById('group-info-title').textContent = group.name;
+                    const groupInfoContent = document.getElementById('group-info-content');
+                    groupInfoContent.innerHTML = `
+                        <p><strong>Created by:</strong> ${group.createdBy === currentUser.uid ? 'You' : 'Unknown'}</p>
+                        <p><strong>Members:</strong> ${Object.keys(group.members || {}).length}</p>
+                        <h4>Member List:</h4>
+                        <div class="member-list">
+                            ${Object.keys(group.members || {}).map(memberId => {
+                                return `<div class="member-item">${memberId === currentUser.uid ? 'You' : 'User'}</div>`;
+                            }).join('')}
+                        </div>
+                    `;
+                    showModal('group-info-modal');
+                }
+            });
         }
 
         // WebRTC Calling Functions
@@ -1235,7 +1754,7 @@
                 })
                 .catch(error => {
                     console.error('Error accessing media devices:', error);
-                    alert('Unable to access your camera/microphone. Please check permissions.');
+                    showToast('Unable to access your camera/microphone. Please check permissions.', 'error');
                 });
         }
 
@@ -1322,7 +1841,7 @@
                 })
                 .catch(error => {
                     console.error('Error accessing media devices:', error);
-                    alert('Unable to access your camera/microphone. Please check permissions.');
+                    showToast('Unable to access your camera/microphone. Please check permissions.', 'error');
                     rejectCall();
                 });
         }
@@ -1498,8 +2017,14 @@
             document.getElementById('nav-notifications').addEventListener('click', () => showPanel('notifications-content'));
             document.getElementById('nav-calls').addEventListener('click', () => showPanel('calls-content'));
             
+            // Notification bell
+            document.getElementById('notification-btn').addEventListener('click', () => {
+                showPanel('notifications-content');
+            });
+            
             // Main view buttons
             document.getElementById('add-friend-btn').addEventListener('click', () => showModal('add-friend-modal'));
+            document.getElementById('create-group-btn').addEventListener('click', () => showModal('create-group-modal'));
             document.getElementById('menu-btn').addEventListener('click', () => {
                 // Load user data into profile modal
                 database.ref('users/' + currentUser.uid).once('value').then(snapshot => {
@@ -1551,14 +2076,20 @@
             });
             
             document.getElementById('voice-call-btn').addEventListener('click', () => {
-                if (currentChatPartner) {
+                if (currentChatPartner && currentChatType === 'user') {
                     startCall(currentChatPartner.uid, false);
                 }
             });
             
             document.getElementById('video-call-btn').addEventListener('click', () => {
-                if (currentChatPartner) {
+                if (currentChatPartner && currentChatType === 'user') {
                     startCall(currentChatPartner.uid, true);
+                }
+            });
+            
+            document.getElementById('chat-more-btn').addEventListener('click', () => {
+                if (currentChatType === 'group') {
+                    showGroupInfo(currentChatPartner.uid);
                 }
             });
             
@@ -1584,6 +2115,25 @@
                 if (e.key === 'Enter') {
                     sendFriendRequest();
                 }
+            });
+            
+            // Group creation
+            document.getElementById('search-members').addEventListener('input', e => {
+                searchUsers(e.target.value);
+            });
+            
+            document.getElementById('cancel-create-group').addEventListener('click', () => {
+                hideModal('create-group-modal');
+                document.getElementById('group-name').value = '';
+                selectedGroupMembers = [];
+                document.getElementById('group-members-list').innerHTML = '';
+                document.getElementById('search-results').innerHTML = '';
+            });
+            
+            document.getElementById('create-group').addEventListener('click', createGroup);
+            
+            document.getElementById('close-group-info').addEventListener('click', () => {
+                hideModal('group-info-modal');
             });
             
             document.getElementById('logout-btn').addEventListener('click', () => {

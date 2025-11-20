@@ -103,33 +103,6 @@
             display: flex;
         }
 
-        /* Notification Bell */
-        .notification-bell {
-            position: relative;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: var(--wa-error);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
         /* Toast Notifications */
         .toast-container {
             position: fixed;
@@ -400,6 +373,172 @@
             gap: 10px;
         }
 
+        /* File Sharing Section Styles */
+        .files-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-bottom: 1px solid var(--wa-border-color);
+        }
+
+        .files-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--wa-text-primary);
+        }
+
+        .upload-fab {
+            background-color: var(--wa-button-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-fab svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .files-list {
+            padding: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--wa-border-color);
+            background-color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .file-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .file-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: var(--wa-accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+
+        .file-icon.image {
+            background-color: #4CAF50;
+        }
+
+        .file-icon.pdf {
+            background-color: #F44336;
+        }
+
+        .file-icon.document {
+            background-color: #2196F3;
+        }
+
+        .file-icon.video {
+            background-color: #FF9800;
+        }
+
+        .file-icon.audio {
+            background-color: #9C27B0;
+        }
+
+        .file-details {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: var(--wa-text-primary);
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-meta {
+            font-size: 12px;
+            color: var(--wa-text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .file-preview-container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .file-preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .file-info {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .file-info-item {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .file-info-label {
+            font-weight: 500;
+            color: var(--wa-text-primary);
+        }
+
+        .file-info-value {
+            color: var(--wa-text-secondary);
+        }
+
+        .share-button {
+            background-color: var(--wa-button-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--wa-text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 16px;
+        }
+
         /* Chat View Styles */
         #chat-view {
             background-color: var(--wa-chat-bg);
@@ -490,6 +629,37 @@
             color: var(--wa-accent-blue);
         }
 
+        /* File Upload Styles */
+        .file-upload-container {
+            display: flex;
+            padding: 10px 15px;
+            background-color: var(--wa-border-color);
+            align-items: center;
+        }
+
+        #file-upload-btn {
+            background-color: var(--wa-button-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #file-upload-btn svg {
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
+
+        #file-input {
+            display: none;
+        }
+
         #chat-input-container {
             display: flex;
             padding: 10px 15px;
@@ -523,6 +693,71 @@
             fill: white;
             width: 20px;
             height: 20px;
+        }
+
+        /* File Message Styles */
+        .file-message {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 5px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 250px;
+        }
+
+        .file-message.sent {
+            background-color: var(--wa-message-out-bg);
+            margin-left: auto;
+        }
+
+        .file-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .file-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-name {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--wa-text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-preview {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .file-download-btn {
+            background-color: var(--wa-button-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .file-size {
+            font-size: 12px;
+            color: var(--wa-text-secondary);
+            margin-top: 4px;
         }
 
         /* Call View Styles */
@@ -812,12 +1047,6 @@
                 <div class="header-top">
                     <div class="app-title">CHAT BUDDY</div>
                     <div class="header-actions">
-                        <button id="notification-btn" class="icon-btn notification-bell">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
-                            </svg>
-                            <div class="notification-badge" id="notification-count" style="display: none;">0</div>
-                        </button>
                         <button id="add-friend-btn" class="icon-btn">
                             <svg viewBox="0 0 24 24">
                                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
@@ -837,7 +1066,7 @@
                 </div>
                 <nav class="header-nav">
                     <div id="nav-home" class="nav-tab active">Chats</div>
-                    <div id="nav-notifications" class="nav-tab">Updates</div>
+                    <div id="nav-files" class="nav-tab">Files</div>
                     <div id="nav-calls" class="nav-tab">Calls</div>
                 </nav>
             </header>
@@ -845,8 +1074,23 @@
                 <div id="home-content" class="content-panel active">
                     <!-- Chats will be populated here -->
                 </div>
-                <div id="notifications-content" class="content-panel">
-                    <!-- Friend requests will be populated here -->
+                <div id="files-content" class="content-panel">
+                    <!-- File sharing section -->
+                    <div class="files-header">
+                        <div class="files-title">Shared Files</div>
+                        <button id="upload-file-btn" class="upload-fab">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="files-list" id="shared-files-list">
+                        <!-- Shared files will be populated here -->
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📁</div>
+                            <div class="empty-state-text">No files shared yet</div>
+                        </div>
+                    </div>
                 </div>
                 <div id="calls-content" class="content-panel">
                     <!-- Call history will be populated here -->
@@ -887,7 +1131,26 @@
             <div id="chat-messages">
                 <!-- Messages will be populated here -->
             </div>
+            
+            <!-- File Upload Container -->
+            <div class="file-upload-container" id="file-upload-container" style="display: none;">
+                <button id="file-upload-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                    </svg>
+                </button>
+                <input type="file" id="file-input">
+                <div id="file-info">No file selected</div>
+                <button id="send-file-btn" class="btn btn-primary" style="margin-left: auto; display: none;">Send File</button>
+            </div>
+            
+            <!-- Chat Input Container -->
             <div id="chat-input-container">
+                <button id="attach-file-btn" class="icon-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                    </svg>
+                </button>
                 <input type="text" id="chat-input" placeholder="Type a message...">
                 <button id="chat-send-btn">
                     <svg viewBox="0 0 24 24">
@@ -1060,6 +1323,42 @@
             </div>
         </div>
 
+        <!-- File Upload Modal -->
+        <div id="upload-file-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Share File</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="file" id="file-to-share" class="form-input">
+                    </div>
+                    <div id="file-preview-container" class="file-preview-container" style="display: none;">
+                        <img id="image-preview" class="file-preview" src="" alt="File Preview">
+                        <div id="file-info" class="file-info">
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Name:</span>
+                                <span class="file-info-value" id="file-name-preview"></span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Size:</span>
+                                <span class="file-info-value" id="file-size-preview"></span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Type:</span>
+                                <span class="file-info-value" id="file-type-preview"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancel-file-upload">Cancel</button>
+                    <button class="btn btn-primary" id="share-file-btn">Share File</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Audio Elements -->
         <audio id="ringtone" loop>
             <!-- Placeholder for ringtone -->
@@ -1071,22 +1370,25 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
     <script>
         // Firebase configuration
-     const firebaseConfig = {
-  apiKey: "AIzaSyBZ0Rze7dQrVxl7VEWiua1FJ1hbvLwJJNA",
-  authDomain: "chat-buddy-7cf9b.firebaseapp.com",
-  databaseURL: "https://chat-buddy-7cf9b-default-rtdb.firebaseio.com",
-  projectId: "chat-buddy-7cf9b",
-  storageBucket: "chat-buddy-7cf9b.firebasestorage.app",
-  messagingSenderId: "246674542599",
-  appId: "1:246674542599:web:88e43e87a177d408f7daa2"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZ0Rze7dQrVxl7VEWiua1FJ1hbvLwJJNA",
+            authDomain: "chat-buddy-7cf9b.firebaseapp.com",
+            databaseURL: "https://chat-buddy-7cf9b-default-rtdb.firebaseio.com",
+            projectId: "chat-buddy-7cf9b",
+            storageBucket: "chat-buddy-7cf9b.firebasestorage.app",
+            messagingSenderId: "246674542599",
+            appId: "1:246674542599:web:88e43e87a177d408f7daa2"
+        };
+        
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const database = firebase.database();
+        const storage = firebase.storage();
 
         // Global state variables
         let currentUser = null;
@@ -1098,6 +1400,9 @@
         let currentCallId = null;
         let currentCallType = null;
         let selectedGroupMembers = [];
+        let selectedFile = null;
+        let sharedFiles = [];
+        let fileToShare = null;
 
         // UI Utility Functions
         function showView(viewId) {
@@ -1127,8 +1432,9 @@
             
             if (panelId === 'home-content') {
                 document.getElementById('nav-home').classList.add('active');
-            } else if (panelId === 'notifications-content') {
-                document.getElementById('nav-notifications').classList.add('active');
+            } else if (panelId === 'files-content') {
+                document.getElementById('nav-files').classList.add('active');
+                loadSharedFiles();
             } else if (panelId === 'calls-content') {
                 document.getElementById('nav-calls').classList.add('active');
             }
@@ -1160,17 +1466,6 @@
             });
         }
 
-        // Update notification badge
-        function updateNotificationBadge(count) {
-            const badge = document.getElementById('notification-count');
-            if (count > 0) {
-                badge.textContent = count;
-                badge.style.display = 'flex';
-            } else {
-                badge.style.display = 'none';
-            }
-        }
-
         // Authentication Functions
         function handleAuthStateChange(user) {
             if (user) {
@@ -1198,8 +1493,8 @@
             loadContacts();
             loadGroups();
             
-            // Listen for friend requests
-            listenForFriendRequests();
+            // Load shared files
+            loadSharedFiles();
             
             // Listen for incoming calls
             listenForIncomingCalls();
@@ -1253,6 +1548,202 @@
                     });
                 });
             });
+        }
+
+        // File Sharing Functions
+        function loadSharedFiles() {
+            const sharedFilesList = document.getElementById('shared-files-list');
+            
+            if (sharedFiles.length === 0) {
+                sharedFilesList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📁</div>
+                        <div class="empty-state-text">No files shared yet</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            sharedFilesList.innerHTML = '';
+            
+            sharedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                
+                // Determine file type for icon
+                let fileTypeClass = 'file-icon';
+                if (file.type.includes('image')) {
+                    fileTypeClass += ' image';
+                } else if (file.type.includes('pdf')) {
+                    fileTypeClass += ' pdf';
+                } else if (file.type.includes('video')) {
+                    fileTypeClass += ' video';
+                } else if (file.type.includes('audio')) {
+                    fileTypeClass += ' audio';
+                } else {
+                    fileTypeClass += ' document';
+                }
+                
+                // Get file extension
+                const fileExtension = file.name.split('.').pop().toUpperCase();
+                
+                fileItem.innerHTML = `
+                    <div class="${fileTypeClass}">${fileExtension}</div>
+                    <div class="file-details">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-meta">
+                            <span>Shared by ${file.sharedBy}</span>
+                            <span>${formatFileSize(file.size)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                fileItem.addEventListener('click', () => {
+                    showFilePreview(file, index);
+                });
+                
+                sharedFilesList.appendChild(fileItem);
+            });
+        }
+        
+        function showFilePreview(file, index) {
+            // Create a modal for file preview
+            const previewModal = document.createElement('div');
+            previewModal.className = 'modal active';
+            previewModal.id = 'file-preview-modal';
+            
+            let previewContent = '';
+            if (file.type.includes('image')) {
+                previewContent = `<img src="${file.url}" alt="${file.name}" class="file-preview">`;
+            } else {
+                previewContent = `
+                    <div style="text-align: center; padding: 40px 0;">
+                        <div style="font-size: 48px; margin-bottom: 20px;">📄</div>
+                        <div style="font-size: 18px; margin-bottom: 10px;">${file.name}</div>
+                        <div style="color: var(--wa-text-secondary);">This file type cannot be previewed</div>
+                    </div>
+                `;
+            }
+            
+            previewModal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">File Preview</h2>
+                        <button class="close-btn" id="close-preview">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        ${previewContent}
+                        <div class="file-info">
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Name:</span>
+                                <span class="file-info-value">${file.name}</span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Size:</span>
+                                <span class="file-info-value">${formatFileSize(file.size)}</span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Type:</span>
+                                <span class="file-info-value">${file.type}</span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">Shared by:</span>
+                                <span class="file-info-value">${file.sharedBy}</span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">Shared on:</span>
+                                <span class="file-info-value">${new Date(file.timestamp).toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="${file.url}" download="${file.name}" class="btn btn-primary">Download</a>
+                        <button class="btn btn-secondary" id="close-preview-btn">Close</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(previewModal);
+            
+            // Add event listeners for closing the preview
+            document.getElementById('close-preview').addEventListener('click', () => {
+                document.body.removeChild(previewModal);
+            });
+            
+            document.getElementById('close-preview-btn').addEventListener('click', () => {
+                document.body.removeChild(previewModal);
+            });
+            
+            // Close modal when clicking outside
+            previewModal.addEventListener('click', (e) => {
+                if (e.target === previewModal) {
+                    document.body.removeChild(previewModal);
+                }
+            });
+        }
+        
+        function handleFileSelection(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            fileToShare = file;
+            
+            // Show preview
+            const previewContainer = document.getElementById('file-preview-container');
+            const fileNamePreview = document.getElementById('file-name-preview');
+            const fileSizePreview = document.getElementById('file-size-preview');
+            const fileTypePreview = document.getElementById('file-type-preview');
+            const imagePreview = document.getElementById('image-preview');
+            
+            fileNamePreview.textContent = file.name;
+            fileSizePreview.textContent = formatFileSize(file.size);
+            fileTypePreview.textContent = file.type || 'Unknown';
+            
+            if (file.type.includes('image')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+                previewContainer.style.display = 'block';
+            }
+        }
+        
+        function shareFile() {
+            if (!fileToShare) {
+                showToast('Please select a file to share', 'error');
+                return;
+            }
+            
+            // In a real app, you would upload the file to Firebase Storage
+            // For this demo, we'll create a dummy file object
+            const dummyFile = {
+                id: Date.now().toString(),
+                name: fileToShare.name,
+                size: fileToShare.size,
+                type: fileToShare.type,
+                url: URL.createObjectURL(fileToShare), // This is just for demo
+                sharedBy: currentUser ? currentUser.displayName : 'You',
+                timestamp: Date.now()
+            };
+            
+            // Add to shared files
+            sharedFiles.unshift(dummyFile);
+            
+            // Update UI
+            loadSharedFiles();
+            
+            // Show success message
+            showToast('File shared successfully!', 'success');
+            
+            // Close modal and reset
+            hideModal('upload-file-modal');
+            document.getElementById('file-to-share').value = '';
+            document.getElementById('file-preview-container').style.display = 'none';
+            fileToShare = null;
         }
 
         function createContactElement(user, userId) {
@@ -1334,19 +1825,55 @@
         function createMessageElement(message, type) {
             const div = document.createElement('div');
             const isSent = message.senderId === currentUser.uid;
-            div.className = `message-bubble ${isSent ? 'message-sent' : 'message-received'}`;
             
-            let senderName = '';
-            if (type === 'group' && !isSent) {
-                // For group messages, show sender name
-                senderName = `<div class="message-sender">${message.senderName || 'Unknown User'}</div>`;
+            if (message.type === 'file') {
+                // Create file message element
+                div.className = `file-message ${isSent ? 'sent' : ''}`;
+                
+                let senderName = '';
+                if (type === 'group' && !isSent) {
+                    senderName = `<div class="message-sender">${message.senderName || 'Unknown User'}</div>`;
+                }
+                
+                let fileContent = '';
+                if (message.fileType && message.fileType.startsWith('image/')) {
+                    fileContent = `<img src="${message.fileUrl}" alt="${message.fileName}" class="file-preview">`;
+                } else {
+                    fileContent = `
+                        <div class="file-header">
+                            <div class="file-icon">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                                </svg>
+                            </div>
+                            <div class="file-name">${message.fileName}</div>
+                        </div>
+                        <div class="file-size">${formatFileSize(message.fileSize)}</div>
+                        <a href="${message.fileUrl}" target="_blank" class="file-download-btn">Download</a>
+                    `;
+                }
+                
+                div.innerHTML = `
+                    ${senderName}
+                    ${fileContent}
+                    <div class="message-time">${formatTime(message.timestamp)}</div>
+                `;
+            } else {
+                // Create text message element
+                div.className = `message-bubble ${isSent ? 'message-sent' : 'message-received'}`;
+                
+                let senderName = '';
+                if (type === 'group' && !isSent) {
+                    senderName = `<div class="message-sender">${message.senderName || 'Unknown User'}</div>`;
+                }
+                
+                div.innerHTML = `
+                    ${senderName}
+                    <div>${message.text}</div>
+                    <div class="message-time">${formatTime(message.timestamp)}</div>
+                `;
             }
             
-            div.innerHTML = `
-                ${senderName}
-                <div>${message.text}</div>
-                <div class="message-time">${formatTime(message.timestamp)}</div>
-            `;
             return div;
         }
 
@@ -1354,6 +1881,14 @@
             if (!timestamp) return '';
             const date = new Date(timestamp);
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
         function sendMessage() {
@@ -1372,133 +1907,71 @@
                     text: messageText,
                     senderId: currentUser.uid,
                     senderName: currentUser.displayName || 'Unknown User',
-                    timestamp: Date.now()
+                    timestamp: Date.now(),
+                    type: 'text'
                 };
                 
                 database.ref('messages/' + chatId).push(message);
                 chatInput.value = '';
-                
-                // Update unread count for recipient (for user chats only)
-                if (currentChatType === 'user') {
-                    updateUnreadCount(currentChatPartner.uid, chatId);
-                } else if (currentChatType === 'group') {
-                    // For groups, update unread count for all members except sender
-                    updateGroupUnreadCount(currentChatPartner.uid, chatId);
-                }
             }
         }
 
-        function updateUnreadCount(recipientId, chatId) {
-            const unreadRef = database.ref('unreadCounts/' + recipientId + '/' + chatId);
-            unreadRef.transaction(current => {
-                return (current || 0) + 1;
-            });
+        function sendFileMessage(fileUrl, fileName, fileSize, fileType) {
+            if (currentChatPartner) {
+                let chatId;
+                if (currentChatType === 'user') {
+                    chatId = generateChatId(currentUser.uid, currentChatPartner.uid);
+                } else {
+                    chatId = `group_${currentChatPartner.uid}`;
+                }
+                
+                const message = {
+                    type: 'file',
+                    fileUrl: fileUrl,
+                    fileName: fileName,
+                    fileSize: fileSize,
+                    fileType: fileType,
+                    senderId: currentUser.uid,
+                    senderName: currentUser.displayName || 'Unknown User',
+                    timestamp: Date.now()
+                };
+                
+                database.ref('messages/' + chatId).push(message);
+                
+                // Hide file upload container and reset
+                document.getElementById('file-upload-container').style.display = 'none';
+                document.getElementById('file-info').textContent = 'No file selected';
+                document.getElementById('send-file-btn').style.display = 'none';
+                selectedFile = null;
+            }
         }
 
-        function updateGroupUnreadCount(groupId, chatId) {
-            const groupRef = database.ref('groups/' + groupId + '/members');
-            groupRef.once('value').then(snapshot => {
-                const members = snapshot.val() || {};
-                Object.keys(members).forEach(memberId => {
-                    if (memberId !== currentUser.uid) {
-                        const unreadRef = database.ref('unreadCounts/' + memberId + '/' + chatId);
-                        unreadRef.transaction(current => {
-                            return (current || 0) + 1;
-                        });
-                    }
-                });
+        function uploadFile() {
+            if (!selectedFile || !currentChatPartner) return;
+            
+            const file = selectedFile;
+            const storageRef = storage.ref();
+            const fileRef = storageRef.child('chat_files/' + Date.now() + '_' + file.name);
+            
+            // Show uploading indicator
+            document.getElementById('file-info').textContent = 'Uploading...';
+            document.getElementById('send-file-btn').disabled = true;
+            
+            fileRef.put(file).then(snapshot => {
+                return snapshot.ref.getDownloadURL();
+            }).then(downloadURL => {
+                // Send file message with download URL
+                sendFileMessage(downloadURL, file.name, file.size, file.type);
+                showToast('File uploaded successfully!', 'success');
+            }).catch(error => {
+                console.error('Error uploading file:', error);
+                showToast('Error uploading file. Please try again.', 'error');
+                document.getElementById('file-info').textContent = 'Upload failed';
+                document.getElementById('send-file-btn').disabled = false;
             });
         }
 
         // Friend Request Functions
-        function listenForFriendRequests() {
-            const requestsRef = database.ref('requests/' + currentUser.uid);
-            requestsRef.on('child_added', snapshot => {
-                const request = snapshot.val();
-                const requestId = snapshot.key;
-                displayFriendRequest(request, requestId);
-                showToast(`${request.senderUsername} sent you a friend request`, 'success');
-                updateNotificationCount();
-            });
-            
-            requestsRef.on('child_removed', snapshot => {
-                updateNotificationCount();
-            });
-        }
-
-        function updateNotificationCount() {
-            const requestsRef = database.ref('requests/' + currentUser.uid);
-            requestsRef.once('value').then(snapshot => {
-                const count = snapshot.numChildren();
-                updateNotificationBadge(count);
-            });
-        }
-
-        function displayFriendRequest(request, requestId) {
-            const notificationsContent = document.getElementById('notifications-content');
-            const requestElement = document.createElement('div');
-            requestElement.className = 'list-item';
-            requestElement.innerHTML = `
-                <div class="item-avatar">${request.senderUsername ? request.senderUsername.charAt(0).toUpperCase() : 'U'}</div>
-                <div class="item-details">
-                    <div class="item-name">${request.senderUsername || 'Unknown User'}</div>
-                    <div class="item-subtext">Sent you a friend request</div>
-                </div>
-                <div class="item-actions">
-                    <button class="btn btn-success accept-request">Accept</button>
-                    <button class="btn btn-secondary reject-request">Reject</button>
-                </div>
-            `;
-            
-            requestElement.querySelector('.accept-request').addEventListener('click', () => {
-                acceptFriendRequest(requestId, request);
-            });
-            
-            requestElement.querySelector('.reject-request').addEventListener('click', () => {
-                rejectFriendRequest(requestId);
-            });
-            
-            notificationsContent.appendChild(requestElement);
-        }
-
-        function acceptFriendRequest(requestId, request) {
-            // Add each user to the other's contacts
-            database.ref('users/' + currentUser.uid + '/contacts/' + request.senderId).set(true);
-            database.ref('users/' + request.senderId + '/contacts/' + currentUser.uid).set(true);
-            
-            // Remove the request
-            database.ref('requests/' + currentUser.uid + '/' + requestId).remove();
-            
-            // Remove the request element from UI
-            const notificationsContent = document.getElementById('notifications-content');
-            const requestElements = notificationsContent.querySelectorAll('.list-item');
-            requestElements.forEach(element => {
-                if (element.querySelector('.item-name').textContent === request.senderUsername) {
-                    element.remove();
-                }
-            });
-            
-            showToast(`You are now friends with ${request.senderUsername}`, 'success');
-        }
-
-        function rejectFriendRequest(requestId) {
-            database.ref('requests/' + currentUser.uid + '/' + requestId).remove();
-            
-            // Remove the request element from UI
-            const notificationsContent = document.getElementById('notifications-content');
-            const requestElements = notificationsContent.querySelectorAll('.list-item');
-            requestElements.forEach((element, index) => {
-                if (element.querySelector('.accept-request')) {
-                    const buttons = element.querySelectorAll('button');
-                    if (buttons.length > 0) {
-                        element.remove();
-                    }
-                }
-            });
-            
-            showToast('Friend request rejected', 'success');
-        }
-
         function sendFriendRequest() {
             const friendUsername = document.getElementById('friend-username').value.trim();
             
@@ -2014,12 +2487,23 @@
             
             // Navigation
             document.getElementById('nav-home').addEventListener('click', () => showPanel('home-content'));
-            document.getElementById('nav-notifications').addEventListener('click', () => showPanel('notifications-content'));
+            document.getElementById('nav-files').addEventListener('click', () => showPanel('files-content'));
             document.getElementById('nav-calls').addEventListener('click', () => showPanel('calls-content'));
             
-            // Notification bell
-            document.getElementById('notification-btn').addEventListener('click', () => {
-                showPanel('notifications-content');
+            // File sharing event listeners
+            document.getElementById('upload-file-btn').addEventListener('click', () => {
+                showModal('upload-file-modal');
+            });
+            
+            document.getElementById('file-to-share').addEventListener('change', handleFileSelection);
+            
+            document.getElementById('share-file-btn').addEventListener('click', shareFile);
+            
+            document.getElementById('cancel-file-upload').addEventListener('click', () => {
+                hideModal('upload-file-modal');
+                document.getElementById('file-to-share').value = '';
+                document.getElementById('file-preview-container').style.display = 'none';
+                fileToShare = null;
             });
             
             // Main view buttons
@@ -2074,6 +2558,22 @@
                     sendMessage();
                 }
             });
+            
+            // File upload functionality
+            document.getElementById('attach-file-btn').addEventListener('click', () => {
+                document.getElementById('file-input').click();
+            });
+            
+            document.getElementById('file-input').addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    selectedFile = this.files[0];
+                    document.getElementById('file-info').textContent = selectedFile.name;
+                    document.getElementById('send-file-btn').style.display = 'block';
+                    document.getElementById('file-upload-container').style.display = 'flex';
+                }
+            });
+            
+            document.getElementById('send-file-btn').addEventListener('click', uploadFile);
             
             document.getElementById('voice-call-btn').addEventListener('click', () => {
                 if (currentChatPartner && currentChatType === 'user') {
